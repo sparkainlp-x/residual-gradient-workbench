@@ -2,6 +2,7 @@
   "upload_type": "software",
   "title": "residual-gradient-workbench: a browser workbench separating an OES-32 residual replay from a classical thermoelectric generator model",
   "version": "0.1.0",
+  "publication_date": "2026-10-06",
   "description": "<p><strong>residual-gradient-workbench</strong> is a dependency-free browser prototype with two strictly separate lanes. <strong>Lane 01</strong> replays the normative OES-32 residual (<code>r_i = |y_i - x_i|</code>, <code>R = max r_i</code>) pinned to oes32-residual at <code>b77b612</code>, and applies one capped correction to the first worst component; a falling R is labelled a simulation and the work from the residual is always zero. <strong>Lane 02</strong> is a classical linear Thevenin model of a thermoelectric generator (TEG) driven by explicit hot and cold reservoir temperatures.</p><p><strong>Evidence.</strong> All default parameters are SYNTHETIC; no hardware experiment was performed. Model outputs are predictions, not measurements.</p><p><strong>Limits.</strong> Predicted electrical output requires an external temperature gradient; zero or reversed gradients give no positive output. The Carnot fraction is a ceiling on heat-to-work conversion, not the device efficiency. The two lanes share no state or energy accounting. No free-energy claim.</p>",
   "creators": [
     {

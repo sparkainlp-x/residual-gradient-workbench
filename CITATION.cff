@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below. All thermoelectric parameters are SYNTHETIC and no hardware experiment was performed; residual change contributes zero work and no free-energy claim is made. No release or DOI exists yet: cite the repository and commit."
+message: "If you use this software, please cite it as below. All thermoelectric parameters are SYNTHETIC and no hardware experiment was performed; residual change contributes zero work and no free-energy claim is made."
 title: "residual-gradient-workbench: a browser workbench separating an OES-32 residual replay from a classical thermoelectric generator model"
 type: software
 authors:
@@ -11,7 +11,7 @@ repository-code: "https://github.com/sparkainlp-x/residual-gradient-workbench"
 url: "https://sparkainlp-x.github.io/residual-gradient-workbench/"
 license: AGPL-3.0-only
 version: "0.1.0"
-# Prepared for v0.1.0. Add date-released and the Zenodo DOIs only when the release actually exists.
+date-released: "2026-10-06"
 abstract: >-
   Dependency-free browser prototype with two strictly separate lanes. Lane 01
   replays the normative OES-32 residual (r_i = |y_i - x_i|, R = max r_i;
