@@ -10,6 +10,14 @@ authors:
 repository-code: "https://github.com/sparkainlp-x/residual-gradient-workbench"
 url: "https://sparkainlp-x.github.io/residual-gradient-workbench/"
 license: AGPL-3.0-only
+doi: 10.5281/zenodo.23187280
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23187280
+    description: "Concept DOI (all versions)"
+  - type: doi
+    value: 10.5281/zenodo.23187281
+    description: "Version DOI for v0.1.0"
 version: "0.1.0"
 date-released: "2026-10-06"
 abstract: >-

@@ -4,7 +4,7 @@
 [![License: AGPL-3.0-only](https://img.shields.io/badge/License-AGPL--3.0--only-blue.svg)](LICENSE)
 [![Pages](https://github.com/sparkainlp-x/residual-gradient-workbench/actions/workflows/pages.yml/badge.svg)](https://sparkainlp-x.github.io/residual-gradient-workbench/)
 [![Evidence: SYNTHETIC](https://img.shields.io/badge/evidence-SYNTHETIC-blue.svg)](#honesty-labels)
-[![DOI: pending](https://img.shields.io/badge/DOI-pending%20(no%20release%20yet)-lightgrey.svg)](#cite)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23187280.svg)](https://doi.org/10.5281/zenodo.23187280)
 
 A self-contained browser prototype with two **strictly independent** lanes: a deterministic 32-component residual replay and a classical thermoelectric generator (TEG) model driven by explicit hot/cold reservoir temperatures. It demonstrates a category boundary, not a new source of energy: **residual change is never treated as work; predicted electrical output requires an external thermal gradient.**
 
@@ -84,9 +84,9 @@ For a real comparison, use one identified TEG module, for example a commercially
 
 ## Cite
 
-There is no release and no DOI yet. Version 0.1.0 is prepared in [CHANGELOG.md](CHANGELOG.md), [CITATION.cff](CITATION.cff) and [.zenodo.json](.zenodo.json). Until a release exists, cite the repository and the commit you used:
+Archived on Zenodo: concept DOI [10.5281/zenodo.23187280](https://doi.org/10.5281/zenodo.23187280) (all versions); v0.1.0: [10.5281/zenodo.23187281](https://doi.org/10.5281/zenodo.23187281). Metadata: [CITATION.cff](CITATION.cff), [.zenodo.json](.zenodo.json); changes: [CHANGELOG.md](CHANGELOG.md). Cite as:
 
-> Brisson, J.-F. (2026). *residual-gradient-workbench: a browser workbench separating an OES-32 residual replay from a classical thermoelectric generator model* (SYNTHETIC research prototype, version 0.1.0, unreleased) [Computer software]. Spark AI NLP. https://github.com/sparkainlp-x/residual-gradient-workbench
+> Brisson, J.-F. (2026). *residual-gradient-workbench: a browser workbench separating an OES-32 residual replay from a classical thermoelectric generator model* (SYNTHETIC research prototype, version 0.1.0) [Computer software]. Spark AI NLP. Zenodo. https://doi.org/10.5281/zenodo.23187281
 
 ## Contributing, security, license
 
