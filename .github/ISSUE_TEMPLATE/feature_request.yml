@@ -1,0 +1,28 @@
+name: Feature request
+description: Propose a focused improvement.
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and use case
+      description: What problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe the behavior, including how the two lanes stay separate.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Scope and honesty
+      options:
+        - label: This keeps residual change at zero work and adds no residual-to-energy bridge.
+          required: true
+        - label: This adds no network request, dependency or telemetry.
+          required: true

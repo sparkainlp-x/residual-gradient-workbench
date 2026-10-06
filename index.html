@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="description" content="A local-only demonstrator separating computational residual replay from thermoelectric output supplied by an external thermal gradient." />
+    <title>Gradient / Residual Workbench</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./src/app.mjs"></script>
+  </head>
+  <body>
+    <div class="honesty-banner" role="note"><strong>SYNTHETIC</strong> parameters &middot; no hardware experiment performed &middot; residual contributes zero work &middot; no free-energy claim &middot; Carnot is a ceiling only</div>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow hero-eyebrow"><span class="local-dot"></span> BROWSER-ONLY PROTOTYPE <span class="eyebrow-divider">/</span> NO NETWORK REQUESTS</div>
+        <div class="hero-layout">
+          <div>
+            <h1>Residuals are not energy.<br /><span>Gradients are.</span></h1>
+            <p class="hero-copy">A falling residual is a computational change. Predicted electrical output lives in a separate lane and requires an explicit external hot-to-cold gradient.</p>
+          </div>
+          <aside class="firewall-card" aria-label="Energy firewall principle">
+            <div class="firewall-icon" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="eyebrow">THE ENERGY FIREWALL</div>
+            <p>No residual-to-energy bridge. No free-energy claim.</p>
+            <small>Two models · independent inputs · no shared state</small>
+          </aside>
+        </div>
+        <div class="hero-bottom"><span>01&nbsp; COMPUTATIONAL RESIDUAL</span><span>02&nbsp; THERMOELECTRIC MODEL</span><span>MODEL OUTPUT ≠ HARDWARE MEASUREMENT</span></div>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="lanes" aria-label="Independent demonstration lanes">
+        <article class="lane lane-residual" aria-labelledby="residual-title">
+          <header class="lane-header">
+            <div class="lane-heading-group">
+              <div class="lane-kicker"><span class="lane-number">01</span> COMPUTATION <span class="separator">/</span> OBSERVER ONLY</div>
+              <h2 id="residual-title">Residual replay</h2>
+              <p>Re-score a 32-component vector after one bounded correction. A lower <code>R</code> means simulation only.</p>
+            </div>
+            <div class="lane-mark residual-mark" aria-hidden="true">R</div>
+          </header>
+
+          <div class="contract-strip">
+            <span class="contract-label">PINNED CONTRACT</span>
+            <code>oes32-residual @ b77b612</code>
+            <span class="contract-separator">·</span>
+            <code>rᵢ = |yᵢ − xᵢ|</code>
+            <span class="contract-separator">·</span>
+            <code>R = max(rᵢ)</code>
+          </div>
+
+          <div class="vector-editors">
+            <label class="editor-label" for="reference-vector">Reference vector <code>x</code><span>32 finite values</span></label>
+            <textarea id="reference-vector" class="vector-text" rows="3" spellcheck="false" aria-describedby="vector-help"></textarea>
+            <label class="editor-label" for="observed-vector">Observed vector <code>y</code><span>32 finite values</span></label>
+            <textarea id="observed-vector" class="vector-text" rows="3" spellcheck="false" aria-describedby="vector-help"></textarea>
+            <p id="vector-help" class="microcopy">Enter 32 numbers separated by commas or whitespace. The default fixture includes a 0.55 spike and smaller residuals.</p>
+          </div>
+
+          <div class="replay-controls">
+            <label class="compact-field">Max correction cap
+              <span class="input-with-unit"><input id="step-cap" type="number" min="0" step="0.01" value="0.25" /><span>per step</span></span>
+            </label>
+            <label class="compact-field">Comparison tolerance <code>τ</code>
+              <span class="input-with-unit"><input id="residual-tolerance" type="number" min="0" step="0.01" value="0.25" /><span>R threshold</span></span>
+            </label>
+          </div>
+          <div class="button-row">
+            <button id="apply-step" class="button button-primary" type="button">Apply one bounded step <span aria-hidden="true">→</span></button>
+            <button id="load-example" class="button button-secondary" type="button">Reload 0.55 fixture</button>
+          </div>
+          <p id="residual-error" class="error-message" role="alert" hidden></p>
+
+          <section class="residual-readout" aria-label="Residual replay results">
+            <div class="readout-topline"><span>RE-SCORE</span><span id="residual-status-pill" class="status-pill">READY</span></div>
+            <div class="metrics-row">
+              <div class="metric-card"><span>R before</span><strong id="r-before">—</strong></div>
+              <div class="metric-arrow" aria-hidden="true">→</div>
+              <div class="metric-card"><span>R after</span><strong id="r-after">—</strong></div>
+              <div class="metric-card latch-card"><span>Observer latch</span><strong id="observer-latch">—</strong></div>
+            </div>
+            <p id="step-summary" class="step-summary" aria-live="polite">Apply one step to re-score the current vector.</p>
+            <div class="work-zero"><span class="zero-mark" aria-hidden="true">0</span><span><strong>work from residual = 0</strong><small>No joules are assigned to a residual change.</small></span></div>
+          </section>
+
+          <section class="component-section" aria-labelledby="component-heading">
+            <div class="section-heading"><h3 id="component-heading">Component residual vector</h3><span>r₁ … r₃₂ <span class="legend-worst"></span> selected worst</span></div>
+            <div id="component-grid" class="component-grid" role="list" aria-label="32 component residuals"></div>
+          </section>
+
+          <section class="observer-section" aria-labelledby="observer-heading">
+            <div class="section-heading"><h3 id="observer-heading">Observer log</h3><span>append-only this session</span></div>
+            <ol id="observer-log" class="observer-log" aria-live="polite"><li class="log-empty">No replay step logged yet.</li></ol>
+          </section>
+          <p class="lane-footnote">A correction updates at most one observed component, by no more than the cap. All other components are preserved. The “latch” is only the <code>R &gt; τ</code> comparison; it is not an energy gate.</p>
+        </article>
+
+        <article class="lane lane-teg" aria-labelledby="teg-title">
+          <header class="lane-header">
+            <div class="lane-heading-group">
+              <div class="lane-kicker"><span class="lane-number">02</span> CLASSICAL PHYSICS <span class="separator">/</span> EXTERNAL SOURCE</div>
+              <h2 id="teg-title">Thermoelectric output</h2>
+              <p>Predict loaded electrical output only from the hot and cold reservoirs entered here.</p>
+            </div>
+            <div class="lane-mark teg-mark" aria-hidden="true">ΔT</div>
+          </header>
+
+          <div class="source-banner"><span class="source-glyph" aria-hidden="true">↘</span><span><strong>External heat flow required</strong><small>Reservoir temperatures are model inputs, not measurements.</small></span><span class="synthetic-tag">SYNTHETIC</span></div>
+
+          <form id="teg-form" novalidate>
+            <div class="teg-input-grid">
+              <label class="teg-field">Hot reservoir <span class="field-line"><input id="hot-c" type="number" step="any" value="80" required /><span>°C</span></span></label>
+              <label class="teg-field">Cold reservoir <span class="field-line"><input id="cold-c" type="number" step="any" value="25" required /><span>°C</span></span></label>
+              <label class="teg-field">Seebeck coefficient <span class="field-line"><input id="seebeck" type="number" min="0" step="any" value="0.025" required /><span>V/K</span></span></label>
+              <label class="teg-field">Internal resistance <span class="field-line"><input id="internal-r" type="number" min="0.000001" step="any" value="4" required /><span>Ω</span></span></label>
+              <label class="teg-field">Load resistance <span class="field-line"><input id="load-r" type="number" min="0.000001" step="any" value="4" required /><span>Ω</span></span></label>
+              <label class="teg-field">Run duration <span class="field-line"><input id="duration-s" type="number" min="0" step="any" value="60" required /><span>s</span></span></label>
+              <label class="teg-field heat-field">Measured heat input <span class="optional-tag">optional</span><span class="field-line"><input id="heat-input" type="number" min="0" step="any" placeholder="leave blank if unknown" /><span>J</span></span><small>Only this measured value enables an available-work energy calculation.</small></label>
+            </div>
+            <button class="button button-teg" type="submit">Recalculate thermoelectric model <span aria-hidden="true">→</span></button>
+            <p id="teg-error" class="error-message" role="alert" hidden></p>
+          </form>
+
+          <section class="teg-results" aria-label="Thermoelectric model outputs">
+            <div class="readout-topline"><span>LOADED OUTPUT · IDEALIZED MODEL</span><span id="teg-status-pill" class="status-pill status-teg">READY</span></div>
+            <div class="teg-output-grid">
+              <div class="teg-output"><span>Open-circuit V<sub>oc</sub></span><strong id="voc-out">—</strong></div>
+              <div class="teg-output"><span>Load current I</span><strong id="current-out">—</strong></div>
+              <div class="teg-output"><span>Load voltage V<sub>load</sub></span><strong id="vload-out">—</strong></div>
+              <div class="teg-output"><span>Electrical power P<sub>elec</sub></span><strong id="power-out">—</strong></div>
+              <div class="teg-output teg-output-highlight"><span>Electrical energy E<sub>elec</sub></span><strong id="energy-out">—</strong></div>
+              <div class="teg-output"><span>Matched-load P<sub>max</sub></span><strong id="pmax-out">—</strong></div>
+            </div>
+            <div class="thermo-notes">
+              <div class="thermo-note"><span class="note-mark">η</span><p><strong>Carnot ceiling: <span id="carnot-out">—</span></strong><small>Maximum fraction of heat convertible to work between these reservoirs—not actual device efficiency.</small></p></div>
+              <div class="thermo-note"><span class="note-mark">Q</span><p><strong id="available-work-out">Heat input unmeasured.</strong><small id="heat-note">Available work in joules is unknown until Q<sub>hot</sub> is measured.</small></p></div>
+            </div>
+            <div id="load-match-note" class="load-match-note">Matched-load maximum occurs at R<sub>load</sub> = R<sub>int</sub>.</div>
+          </section>
+
+          <div class="teg-boundary"><strong>Energy boundary</strong><p>The model uses <code>V<sub>oc</sub> = SΔT</code>, <code>I = V<sub>oc</sub>/(R<sub>int</sub> + R<sub>load</sub>)</code>, and <code>P = I²R<sub>load</sub></code>. Any predicted output comes from externally supplied heat flow across the gradient; it is not created from nothing.</p></div>
+        </article>
+      </section>
+
+      <section class="report-bar" aria-label="Local report export">
+        <div><span class="report-icon" aria-hidden="true">JSON</span><p><strong>Keep a local run record</strong><small>Export current vectors, replay log, thermal inputs and calculated outputs. Nothing is uploaded.</small></p></div>
+        <div class="report-actions"><a class="button button-export report-link" href="./reports/sample-report.json">Sample report (JSON)</a><button id="download-report" class="button button-export" type="button">Download JSON report</button></div>
+      </section>
+
+      <footer class="page-footer">
+        <p><strong>Model boundary.</strong> TEG values are predictions from synthetic parameters, not hardware measurements. No physical experiment was run. The residual and TEG lanes share no state, inputs, or energy accounting.</p>
+        <nav class="footer-links" aria-label="Project links"><a href="https://github.com/sparkainlp-x/residual-gradient-workbench">Source on GitHub</a><a href="https://github.com/sparkainlp-x/residual-gradient-workbench#readme">README</a><a href="https://github.com/sparkainlp-x/oes32-residual">oes32-residual</a><a href="https://sparkainlp-x.github.io/spark-membrane/">spark-membrane</a><a href="https://github.com/sparkainlp-x/residual-gradient-workbench/blob/main/LICENSE">AGPL-3.0-only</a></nav>
+        <div class="footer-meta"><span>RUNS IN YOUR BROWSER</span><span>NO DEPENDENCIES</span><span>NO TELEMETRY</span></div>
+      </footer>
+    </main>
+  </body>
+</html>

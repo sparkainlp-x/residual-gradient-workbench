@@ -1,0 +1,53 @@
+{
+  "upload_type": "software",
+  "title": "residual-gradient-workbench: a browser workbench separating an OES-32 residual replay from a classical thermoelectric generator model",
+  "version": "0.1.0",
+  "description": "<p><strong>residual-gradient-workbench</strong> is a dependency-free browser prototype with two strictly separate lanes. <strong>Lane 01</strong> replays the normative OES-32 residual (<code>r_i = |y_i - x_i|</code>, <code>R = max r_i</code>) pinned to oes32-residual at <code>b77b612</code>, and applies one capped correction to the first worst component; a falling R is labelled a simulation and the work from the residual is always zero. <strong>Lane 02</strong> is a classical linear Thevenin model of a thermoelectric generator (TEG) driven by explicit hot and cold reservoir temperatures.</p><p><strong>Evidence.</strong> All default parameters are SYNTHETIC; no hardware experiment was performed. Model outputs are predictions, not measurements.</p><p><strong>Limits.</strong> Predicted electrical output requires an external temperature gradient; zero or reversed gradients give no positive output. The Carnot fraction is a ceiling on heat-to-work conversion, not the device efficiency. The two lanes share no state or energy accounting. No free-energy claim.</p>",
+  "creators": [
+    {
+      "name": "Brisson, Jean-François",
+      "affiliation": "Spark AI NLP",
+      "orcid": "0009-0000-9778-5374"
+    }
+  ],
+  "access_right": "open",
+  "license": "agpl-3.0-only",
+  "language": "eng",
+  "keywords": [
+    "synthetic",
+    "thermoelectric",
+    "Thevenin model",
+    "residual",
+    "OES-32",
+    "education",
+    "reproducibility",
+    "research software",
+    "javascript",
+    "open science"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/sparkainlp-x/residual-gradient-workbench",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.22985520",
+      "relation": "isDerivedFrom",
+      "scheme": "doi",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.23175490",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "software"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "spark-ai-nlp"
+    }
+  ],
+  "notes": "Evidence status: SYNTHETIC parameters only; no hardware experiment performed. Residual change contributes zero work. Commercial licensing: see COMMERCIAL-LICENSE.md."
+}

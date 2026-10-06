@@ -1,0 +1,24 @@
+{
+  "name": "residual-gradient-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser-only workbench with two strictly separate synthetic lanes: an oes32-residual replay with a capped one-index step, and a classical thermoelectric generator (TEG) Thevenin model. No hardware experiment; residual change is never work.",
+  "license": "AGPL-3.0-only",
+  "author": "Jean-François Brisson (https://orcid.org/0009-0000-9778-5374)",
+  "homepage": "https://sparkainlp-x.github.io/residual-gradient-workbench/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparkainlp-x/residual-gradient-workbench.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "report": "node scripts/generate-sample-report.mjs",
+    "check:report": "node scripts/generate-sample-report.mjs && git diff --exit-code -- reports/sample-report.json",
+    "scan": "node scripts/overclaim-scan.mjs",
+    "serve": "python3 -m http.server 8000 --bind 127.0.0.1"
+  }
+}
